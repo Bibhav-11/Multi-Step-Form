@@ -1,0 +1,52 @@
+.pricing-summary {
+  background: hsl(230, 75%, 98%);
+  border-radius: 5px;
+  padding: 2.2rem;
+}
+
+.summary__group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--cgray);
+}
+
+.summary__group:not(:last-child) {
+  margin-bottom: 2.2rem;
+}
+
+.summary__pricing {
+  color: var(--mblue);
+}
+
+.summary__group:first-of-type {
+  color: var(--mblue);
+  font-weight: bold;
+  padding-bottom: 2.2rem;
+  border-bottom: 1px solid var(--lgray);
+}
+
+.summary__group:first-of-type button {
+  color: var(--cgray);
+  outline: none;
+  border: none;
+  text-decoration: underline;
+  background: none;
+  font-family: inherit;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.pricing-total {
+  padding: 2.2rem;
+  display: flex;
+  justify-content: space-between;
+  color: var(--cgray);
+}
+
+.pricing-total .pricing {
+  color: var(--pblue);
+  font-size: 1.8rem;
+  font-weight: bold;
+}

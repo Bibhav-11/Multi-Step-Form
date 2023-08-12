@@ -1,0 +1,54 @@
+.step-sidebar__container {
+  padding: 4rem 3rem;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  letter-spacing: 0.5px;
+}
+
+.step-group {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.step-index {
+  height: 3.2rem;
+  width: 3.2rem;
+  border: 1px solid var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.step-index.active {
+  background: var(--lblue);
+  color: var(--mblue);
+  border: 1px solid transparent;
+}
+
+.step-details {
+  text-transform: uppercase;
+}
+
+.step-number {
+  color: var(--cgray);
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.step-title {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+@media screen and (max-width: 68.85em) {
+  .step-sidebar__container {
+    flex-direction: row;
+    justify-content: center;
+    gap: 2.5rem;
+  }
+}

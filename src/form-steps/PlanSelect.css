@@ -1,0 +1,68 @@
+.radio-forms {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13.5rem, 1fr));
+  gap: 1.7rem;
+}
+
+.radio-forms label {
+  border: 1px solid var(--cgray);
+  border-radius: 4px;
+}
+
+.radio-forms label:hover,
+.radio-forms label.active {
+  border: 1px solid var(--pblue);
+}
+
+.radio-forms .form-group label {
+  height: 100%;
+  cursor: pointer;
+  display: block;
+  padding: 1.8rem 2rem;
+}
+
+.radio-forms input {
+  display: none;
+}
+
+.radio-forms input:checked + label {
+  background: var(--alabaster);
+  border: 1px solid var(--pblue);
+}
+
+.plan__title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.plan__pricing {
+  color: var(--cgray);
+}
+
+.plan__icon {
+  margin-bottom: 4.5rem;
+}
+
+.plan__free {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}
+
+.plan__free.hide {
+  display: none;
+}
+
+@media screen and (max-width: 68.85em) {
+  .radio-forms {
+    grid-template-columns: 1fr;
+  }
+
+  .radio-forms .form-group label {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .plan__icon {
+    margin-bottom: 0;
+  }
+}

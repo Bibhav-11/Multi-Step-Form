@@ -1,13 +1,53 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* 
+Marine blue: hsl(213, 96%, 18%)
+Purplish blue: hsl(243, 100%, 62%)
+Pastel blue: hsl(228, 100%, 84%)
+Light blue: hsl(206, 94%, 87%)
+Strawberry red: hsl(354, 84%, 57%)
+Neutral
+Cool gray: hsl(231, 11%, 63%)
+Light gray: hsl(229, 24%, 87%)
+Magnolia: hsl(217, 100%, 97%)
+Alabaster: hsl(231, 100%, 99%)
+White: hsl(0, 0%, 100%)
+*/
+
+:root {
+  --mblue: hsl(213, 96%, 18%);
+  --pblue: hsl(243, 100%, 62%);
+  --pablue: hsl(228, 100%, 84%);
+  --lblue: hsl(206, 94%, 87%);
+  --sred: hsl(354, 84%, 57%);
+  --cgray: hsl(231, 11%, 63%);
+  --lgray: hsl(229, 24%, 87%);
+  --magnolia: hsl(217, 100%, 97%);
+  --alabaster: hsl(231, 100%, 99%);
+  --white: hsl(0, 0%, 100%);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 1.6rem;
+  letter-spacing: normal;
+}
+
+.form-body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--magnolia);
+  color: var(--mblue);
+  font-family: "Ubuntu", sans-serif;
+  position: relative;
 }

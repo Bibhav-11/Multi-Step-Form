@@ -1,0 +1,60 @@
+.form-group__toggle {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 3.5rem;
+  background: var(--magnolia);
+  padding: 1.3rem 0;
+  justify-content: center;
+}
+
+.toggle-container {
+  position: relative;
+  height: 20px;
+  width: 40px;
+  background: var(--mblue);
+  border-radius: 100px;
+}
+
+.toggle-container input {
+  display: none;
+}
+
+.toggle-container .label {
+  position: absolute;
+  inset: 0;
+  width: 50%;
+  cursor: pointer;
+}
+
+.toggle-container .label.active {
+  color: var(--lgray);
+}
+
+.toggle-container .label:nth-of-type(1) {
+  left: 0;
+}
+
+.toggle-container .label:nth-of-type(2) {
+  left: 50%;
+}
+
+.toggle-circle {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.toggle-container input:nth-of-type(1):checked ~ .toggle-circle {
+  left: 9%;
+}
+.toggle-container input:nth-of-type(2):checked ~ .toggle-circle {
+  left: calc(90% - 14px);
+}

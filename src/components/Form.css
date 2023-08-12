@@ -1,0 +1,147 @@
+.form-container {
+  width: 90%;
+  max-width: 100rem;
+  display: flex;
+  padding: 1.8rem;
+  background: white;
+  border-radius: 8px;
+  /* gap: 4rem; */
+  min-height: 64rem;
+  z-index: 1;
+  /* opacity: 0; */
+}
+
+.form-sidebar {
+  background-image: url(../assets/images/bg-sidebar-desktop.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  flex: 1.4;
+  overflow: hidden;
+  border-radius: 10px;
+  /* width: 100%; */
+}
+
+div.form-sidebar__mobile {
+  display: none;
+}
+
+.form {
+  flex: 2.5;
+  padding: 5rem 8rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form__buttons {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.form__buttons .next {
+  background: var(--mblue);
+  color: var(--white);
+  font-family: inherit;
+  font-weight: bold;
+  letter-spacing: 0.6px;
+  border-radius: 8px;
+  border: none;
+  padding: 1.7rem 2.6rem;
+  cursor: pointer;
+}
+
+.form__buttons .next.last {
+  background: var(--pblue);
+}
+
+.form__buttons .back {
+  color: var(--cgray);
+  font-weight: bold;
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  letter-spacing: 0.6px;
+}
+
+.form__buttons .next:hover {
+  background: hsl(214, 72%, 32%);
+}
+
+.form__buttons .next.last:hover {
+  background: hsl(243, 100%, 65%);
+}
+
+/* Adding transition animation */
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.form-step {
+  position: relative;
+  height: 100%;
+}
+
+.form-step.slide-in {
+  animation: slideIn 0.3s ease-in-out;
+}
+
+.form-step.slide-out {
+  animation: slideOut 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 68.85rem) {
+  .form-sidebar {
+    display: none;
+  }
+
+  div.form-sidebar__mobile {
+    display: flex;
+    background: url(../assets/images/bg-sidebar-mobile.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    inset: 0;
+  }
+
+  .form-container {
+    padding: 0;
+    min-height: auto;
+    max-width: 75rem;
+    margin-bottom: -2rem;
+  }
+
+  .form {
+    padding: 3.7rem 2.7rem;
+  }
+
+  .form__buttons {
+    position: fixed;
+    padding: 1.5rem;
+    background: white;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: 0;
+  }
+}

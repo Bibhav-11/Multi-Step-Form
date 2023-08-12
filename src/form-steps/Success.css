@@ -1,0 +1,26 @@
+.success-container {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 87%;
+  line-height: 1.7;
+}
+
+.success-container h2 {
+  margin: 3.5rem 0 2rem;
+}
+
+.success-container p {
+  color: var(--cgray);
+}
+
+@media screen and (max-width: 68.85rem) {
+  .success-container {
+    position: static;
+    transform: translate(0, 0);
+    width: 80%;
+    margin: 0 auto;
+  }
+}
