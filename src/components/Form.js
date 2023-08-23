@@ -4,12 +4,15 @@ import PersonalInfo from "../form-steps/PersonalInfo";
 import PlanSelect from "../form-steps/PlanSelect";
 import Confirm from "../form-steps/Confirm";
 import useMultiStepForm from "./useMultiStepForm";
-import { useForm } from "react-hook-form";
+import StepSideBar from "./StepSidebar";
+import Success from "../form-steps/Success";
+import { plans } from "../form-steps/PlanSelect";
+import { addons } from "../form-steps/Addons";
+
+import { useForm, FormProvider } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import StepSideBar from "./StepSidebar";
-import Success from "../form-steps/Success";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -19,19 +22,16 @@ const schema = yup.object().shape({
 
 function Form() {
   const [animation, setAnimation] = useState("slide-in");
-  const {
-    handleSubmit,
-    register,
-    watch,
-    setValue,
-    formState: { errors },
-  } = useForm({
+
+  const methods = useForm({
     defaultValues: {
       billing: "monthly",
       plan: "arcade",
     },
     resolver: yupResolver(schema),
   });
+
+  const { handleSubmit } = methods;
 
   const {
     steps,
@@ -43,15 +43,20 @@ function Form() {
     isLastStep,
     isActualLastStep,
   } = useMultiStepForm([
-    <PersonalInfo error={errors} register={register} />,
-    <PlanSelect watch={watch} register={register} />,
-    <Addons watch={watch} register={register} />,
-    <Confirm watch={watch} setValue={setValue} />,
+    <PersonalInfo />,
+    <PlanSelect />,
+    <Addons />,
+    <Confirm />,
     <Success />,
   ]);
 
   const onSubmit = (data) => {
-    if (isLastStep) console.log(data);
+    if (isLastStep) {
+      const customPlan = plans.find((p) => p.value === data.plan);
+      const customAddon = data.addon?.map((a) => addons[a]) || [];
+      data = { ...data, plan: customPlan, addon: customAddon };
+      console.log(data);
+    }
     if (!isActualLastStep) {
       next();
       return;
@@ -79,37 +84,37 @@ function Form() {
         <div className="form-sidebar">
           <StepSideBar steps={steps} step={currentStepIndex} />
         </div>
-        <form className="form" onSubmit={handleSubmit(onSubmit)}>
-          {/* <div className="step">
-          {currentStepIndex + 1}/{steps.length}
-        </div> */}
-
-          <div key={steps.indexOf(step)} className={`form-step ${animation}`}>
-            {step}
-          </div>
-
-          {!isActualLastStep && (
-            <div className="form__buttons">
-              <button
-                className="back"
-                type="button"
-                onClick={() => {
-                  setAnimation("slide-out");
-                  prev();
-                }}
-              >
-                {!isFirstStep && "Go Back"}
-              </button>
-              <button
-                onClick={() => setAnimation("slide-in")}
-                className={`next ${isLastStep ? "last" : ""}`}
-                type="submit"
-              >
-                {isLastStep ? "Confirm" : "Next Step"}
-              </button>
+        <FormProvider {...methods}>
+          <form className="form" onSubmit={handleSubmit(onSubmit)}>
+            {/* <div className="step">
+            {currentStepIndex + 1}/{steps.length}
+          </div> */}
+            <div key={steps.indexOf(step)} className={`form-step ${animation}`}>
+              {step}
             </div>
-          )}
-        </form>
+            {!isActualLastStep && (
+              <div className="form__buttons">
+                <button
+                  className="back"
+                  type="button"
+                  onClick={() => {
+                    setAnimation("slide-out");
+                    prev();
+                  }}
+                >
+                  {!isFirstStep && "Go Back"}
+                </button>
+                <button
+                  onClick={() => setAnimation("slide-in")}
+                  className={`next ${isLastStep ? "last" : ""}`}
+                  type="submit"
+                >
+                  {isLastStep ? "Confirm" : "Next Step"}
+                </button>
+              </div>
+            )}
+          </form>
+        </FormProvider>
       </div>
     </>
   );

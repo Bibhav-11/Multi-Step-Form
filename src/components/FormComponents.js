@@ -3,53 +3,45 @@ import "./Toggle.css";
 import "./CheckBox.css";
 import { forwardRef } from "react";
 
-export const Input = forwardRef(
-  ({ label, placeholder, name, onChange, onBlur, error }, ref) => (
-    <div className="form-group error">
-      <div className="form__label">
-        <label>{label}</label>
-        <div className="error">{error && error.message}</div>
-      </div>
-      <input
-        className={`${error ? "error" : ""}`}
-        name={name}
-        placeholder={placeholder}
-        ref={ref}
-        onChange={onChange}
-        onBlur={onBlur}
-        type="text"
-      />
+// export const Input = forwardRef(
+//   ({ label, placeholder, name, onChange, onBlur, error }, ref) => (
+//     <div className="form-group error">
+//       <div className="form__label">
+//         <label>{label}</label>
+//         <div className="error">{error && error.message}</div>
+//       </div>
+//       <input
+//         className={`${error ? "error" : ""}`}
+//         name={name}
+//         placeholder={placeholder}
+//         ref={ref}
+//         onChange={onChange}
+//         onBlur={onBlur}
+//         type="text"
+//       />
+//     </div>
+//   )
+// );
+
+export const Input = forwardRef((props, ref) => (
+  <div className="form-group error">
+    <div className="form__label">
+      <label>{props.label}</label>
+      <div className="error">{props.error && props.error.message}</div>
     </div>
-  )
-);
+    <input
+      ref={ref}
+      className={props.error ? "error" : ""}
+      {...props}
+      type="text"
+    />
+  </div>
+));
 
 export const Checkbox = forwardRef(
-  (
-    {
-      addon,
-      billing,
-      title,
-      details,
-      value,
-      label,
-      placeholder,
-      name,
-      onChange,
-      onBlur,
-    },
-    ref
-  ) => (
+  ({ addon, billing, title, details, value, label, ...rest }, ref) => (
     <div className="form-group checkbox-container">
-      <input
-        type="checkbox"
-        value={value}
-        name={name}
-        placeholder={placeholder}
-        ref={ref}
-        onChange={onChange}
-        onBlur={onBlur}
-        id={value}
-      />
+      <input type="checkbox" value={value} {...rest} ref={ref} id={value} />
       <label htmlFor={value}>
         <div className="checkbox">
           <div className="checkbox__container">
@@ -70,32 +62,9 @@ export const Checkbox = forwardRef(
 );
 
 export const Radio = forwardRef(
-  (
-    {
-      plan,
-      defaultChecked,
-      value,
-      label,
-      placeholder,
-      name,
-      onChange,
-      src,
-      onBlur,
-      billing,
-    },
-    ref
-  ) => (
+  ({ plan, value, src, billing, ...rest }, ref) => (
     <div className="form-group">
-      <input
-        type="radio"
-        value={value}
-        name={name}
-        placeholder={placeholder}
-        ref={ref}
-        onChange={onChange}
-        onBlur={onBlur}
-        id={value}
-      />
+      <input type="radio" value={value} {...rest} ref={ref} id={value} />
       <label htmlFor={value}>
         <img className="plan__icon" src={src} />
 
@@ -117,10 +86,12 @@ export const Radio = forwardRef(
 );
 
 export const Toggle = forwardRef(
-  ({ first, second, name, onChange, onBlur }, ref) => {
+  ({ billing, first, second, name, onChange, onBlur }, ref) => {
     return (
       <div className="form-group form-group__toggle">
-        <label htmlFor={first}>{first[0].toUpperCase() + first.slice(1)}</label>
+        <label className={billing === first ? "active" : ""} htmlFor={first}>
+          {first[0].toUpperCase() + first.slice(1)}
+        </label>
 
         <div className="toggle-container">
           <input
@@ -145,7 +116,7 @@ export const Toggle = forwardRef(
           <label className="label" htmlFor={second}></label>
           <div className="toggle-circle"></div>
         </div>
-        <label htmlFor={second}>
+        <label className={billing === second ? "active" : ""} htmlFor={second}>
           {second[0].toUpperCase() + second.slice(1)}
         </label>
       </div>

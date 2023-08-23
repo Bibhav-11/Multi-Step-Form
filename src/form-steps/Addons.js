@@ -1,6 +1,8 @@
 import { Checkbox } from "../components/FormComponents";
 import FormWrapper from "../components/FormWrapper";
 
+import { useFormContext } from "react-hook-form";
+
 export const addons = {
   onlineService: {
     title: "Online Service",
@@ -19,7 +21,8 @@ export const addons = {
   },
 };
 
-function Addons({ register, watch }) {
+function Addons() {
+  const { register, watch } = useFormContext();
   const billing = watch("billing");
   return (
     <FormWrapper

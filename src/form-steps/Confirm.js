@@ -3,9 +3,12 @@ import FormWrapper from "../components/FormWrapper";
 import { addons } from "./Addons";
 import { plans } from "./PlanSelect";
 
+import { useFormContext } from "react-hook-form";
+
 const capitalise = (str) => str[0].toUpperCase() + str.slice(1);
 
-function Confirm({ watch, setValue }) {
+function Confirm() {
+  const { setValue, watch } = useFormContext();
   const billing = watch("billing");
   const plan = watch("plan");
   const addon = watch("addon");

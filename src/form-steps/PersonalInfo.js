@@ -2,7 +2,13 @@ import "./PersonalInfo.css";
 import { Input } from "../components/FormComponents";
 import FormWrapper from "../components/FormWrapper";
 
-function PersonalInfo({ register, error }) {
+import { useForm, useFormContext } from "react-hook-form";
+
+function PersonalInfo() {
+  const {
+    register,
+    formState: { errors: error },
+  } = useFormContext();
   return (
     <FormWrapper
       title="Personal Info"

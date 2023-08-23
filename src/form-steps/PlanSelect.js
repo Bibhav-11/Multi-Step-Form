@@ -2,6 +2,8 @@ import "./PlanSelect.css";
 import { Radio, Toggle } from "../components/FormComponents";
 import FormWrapper from "../components/FormWrapper";
 
+import { useFormContext } from "react-hook-form";
+
 export const plans = [
   {
     value: "arcade",
@@ -29,7 +31,8 @@ export const plans = [
   },
 ];
 
-function PlanSelect({ register, watch }) {
+function PlanSelect() {
+  const { register, watch } = useFormContext();
   const billing = watch("billing");
 
   const renderedPlans = plans.map((plan) => {
@@ -52,7 +55,12 @@ function PlanSelect({ register, watch }) {
     >
       <div className="radio-forms">{renderedPlans}</div>
 
-      <Toggle first="monthly" second="yearly" {...register("billing")} />
+      <Toggle
+        billing={billing}
+        first="monthly"
+        second="yearly"
+        {...register("billing")}
+      />
     </FormWrapper>
   );
 }

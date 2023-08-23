@@ -8,6 +8,16 @@
   justify-content: center;
 }
 
+.form-group__toggle > label {
+  color: var(--cgray);
+  transition: color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.form-group__toggle > label.active {
+  color: var(--mblue);
+}
+
 .toggle-container {
   position: relative;
   height: 20px;
